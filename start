@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ "x$1" = "xauto" ] ; then
+    ID=auto
+    if [ -n "$DRONE_BUILD_NUMBER" ] ; then
+        ID=$DRONE_BUILD_NUMBER
+    fi
+    exec /app/bin/sc -i $ID
+fi
+exec /app/bin/sc "$@"

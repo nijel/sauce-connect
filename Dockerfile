@@ -9,8 +9,14 @@ RUN apt-get update -qqy \
  && apt-get install -qqy wget \
  && apt-get clean
 
-RUN wget https://saucelabs.com/downloads/sc-$SAUCE_VERSION-linux.tar.gz -O - | tar -xz --strip 1
+RUN wget https://saucelabs.com/downloads/sc-$VERSION-linux.tar.gz -O - | tar -xz --strip 1
 
-ENTRYPOINT ["/app/bin/sc"]
+# Entrypoint
+COPY start /app/bin/
+RUN chmod a+rx /app/bin/start
 
-CMD ["--version"]
+EXPOSE 4445
+EXPOSE 8032
+USER 1000
+ENTRYPOINT ["/app/bin/start"]
+CMD ["auto"]
