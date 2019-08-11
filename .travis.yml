@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker build -t nijel/sauce-connect:latest
+  - docker build -t nijel/sauce-connect:latest .
   - docker exec docker run --rm -it
   - docker run --rm -it nijel/sauce-connect:latest --version
 
