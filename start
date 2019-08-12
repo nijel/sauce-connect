@@ -4,6 +4,6 @@ if [ "x$1" = "xauto" ] ; then
     if [ -n "$DRONE_BUILD_NUMBER" ] ; then
         ID=$DRONE_BUILD_NUMBER
     fi
-    exec /app/bin/sc -i $ID
+    exec /app/bin/sc --verbose --tunnel-identifier $ID
 fi
 exec /app/bin/sc "$@"
